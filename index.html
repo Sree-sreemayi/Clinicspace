@@ -3,34 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EliteCare Clinic - Appointment</title>
+  <title>EliteCare Clinic - Book Appointment</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #0f3057;
-      --secondary-color: #00587a;
-      --accent-color: #00bcd4;
-      --light-bg: #f4f9fd;
+      --primary: #0f3057;
+      --secondary: #00587a;
+      --accent: #00bcd4;
+      --bg-light: #f4f9fd;
+      --text: #333;
+      --text-light: #666;
       --white: #ffffff;
-      --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-      --transition: all 0.3s ease;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease-in-out;
     }
 
-    * {
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: var(--light-bg);
-      color: #333;
+      background-color: var(--bg-light);
+      color: var(--text);
       line-height: 1.6;
     }
 
     header {
-      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: var(--white);
       padding: 1.5rem 2rem;
       display: flex;
@@ -46,25 +48,26 @@
 
     nav a {
       color: var(--white);
-      margin-left: 1.5rem;
       text-decoration: none;
+      margin-left: 1.5rem;
       font-weight: 500;
+      letter-spacing: 0.5px;
       transition: var(--transition);
     }
 
     nav a:hover {
-      color: var(--accent-color);
+      color: var(--accent);
     }
 
     .hero {
-      background: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      background: url('https://images.unsplash.com/photo-1588776814546-ec7b9383aa67?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
       height: 450px;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
-      text-align: center;
       color: var(--white);
+      text-align: center;
     }
 
     .hero::after {
@@ -87,12 +90,12 @@
       margin: 4rem auto;
       padding: 0 2rem;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
     }
 
     .form-card, .info-card {
-      background: var(--white);
+      background-color: var(--white);
       padding: 2.5rem;
       border-radius: 12px;
       box-shadow: var(--shadow);
@@ -104,22 +107,22 @@
     }
 
     h3 {
-      color: var(--primary-color);
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
       font-size: 1.75rem;
       margin-bottom: 1.5rem;
-      font-family: 'Playfair Display', serif;
     }
 
     label {
-      display: block;
-      margin-bottom: 0.5rem;
       font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: block;
     }
 
     input, select, textarea {
       width: 100%;
-      padding: 0.8rem;
-      margin-bottom: 1.2rem;
+      padding: 0.85rem;
+      margin-bottom: 1.25rem;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
@@ -127,38 +130,38 @@
     }
 
     input:focus, select:focus, textarea:focus {
-      border-color: var(--primary-color);
+      border-color: var(--primary);
       outline: none;
     }
 
     button {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(to right, var(--primary), var(--secondary));
       color: var(--white);
-      padding: 0.9rem 1.8rem;
+      padding: 0.85rem 1.75rem;
       border: none;
       border-radius: 8px;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
       transition: var(--transition);
     }
 
     button:hover {
-      background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+      background: linear-gradient(to right, var(--secondary), var(--primary));
     }
 
     .info-card img {
       width: 100%;
       border-radius: 10px;
-      margin-bottom: 1rem;
-      transition: var(--transition);
+      margin-bottom: 1.2rem;
+      transition: transform 0.3s ease;
     }
 
     .info-card img:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
     }
 
     .info-card p {
-      color: #555;
+      color: var(--text-light);
       margin-bottom: 1rem;
     }
 
@@ -168,12 +171,13 @@
       padding: 1.5rem;
       color: #666;
       font-size: 0.95rem;
-      margin-top: 3rem;
+      margin-top: 4rem;
     }
 
     @media (max-width: 768px) {
       .hero h2 {
-        font-size: 2.2rem;
+        font-size: 2.4rem;
+        padding: 0 1rem;
       }
     }
   </style>
@@ -191,12 +195,12 @@
 </header>
 
 <section class="hero">
-  <h2>Your Health, Our Priority</h2>
+  <h2>Your Health, Our Mission</h2>
 </section>
 
 <section class="container">
   <div class="form-card">
-    <h3>Book an Appointment</h3>
+    <h3>Book Your Appointment</h3>
     <form>
       <label for="name">Full Name</label>
       <input type="text" id="name" name="name" required>
@@ -207,9 +211,9 @@
       <label for="phone">Phone Number</label>
       <input type="tel" id="phone" name="phone" required>
 
-      <label for="specialist">Select Specialist</label>
+      <label for="specialist">Specialist</label>
       <select id="specialist" name="specialist" required>
-        <option value="">-- Choose --</option>
+        <option value="">-- Choose Specialist --</option>
         <option value="general">General Physician</option>
         <option value="pediatrician">Pediatrician</option>
         <option value="cardiology">Cardiologist</option>
@@ -219,18 +223,18 @@
       <label for="date">Appointment Date</label>
       <input type="date" id="date" name="date" required>
 
-      <label for="notes">Your Message</label>
-      <textarea id="notes" name="notes" rows="4" placeholder="Your symptoms or queries..."></textarea>
+      <label for="notes">Additional Information</label>
+      <textarea id="notes" name="notes" rows="4" placeholder="Symptoms, questions, or preferences..."></textarea>
 
       <button type="submit">Confirm Booking</button>
     </form>
   </div>
 
   <div class="info-card">
-    <h3>About Our Clinic</h3>
-    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80" alt="Clinic interior">
-    <p>EliteCare Clinic provides expert medical services using the latest technology and compassionate care. We specialize in multiple fields to meet your health needs efficiently.</p>
-    <p>Experience professional, patient-first healthcare in a relaxing, private environment.</p>
+    <h3>Why Choose EliteCare</h3>
+    <img src="https://images.unsplash.com/photo-1588776815298-e014b0f7a381?auto=format&fit=crop&w=800&q=80" alt="EliteCare Facility">
+    <p>At EliteCare Clinic, our patients are our top priority. Our team of highly trained specialists provides world-class care in a safe, modern, and supportive environment.</p>
+    <p>From general medicine to specialized care, our facility is equipped with state-of-the-art technology and warm hospitality to support your healing journey.</p>
   </div>
 </section>
 
