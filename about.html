@@ -1,1 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us - EliteCare Clinic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f3057;
+      --secondary: #00587a;
+      --accent: #00bcd4;
+      --bg-light: #f4f9fd;
+      --white: #ffffff;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+      --transition: all 0.3s ease-in-out;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--white);
+      padding: 1.5rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    nav a:hover {
+      color: var(--accent);
+    }
+
+    .hero {
+      background: url('https://images.unsplash.com/photo-1588776815298-e014b0f7a381?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .hero h2 {
+      position: relative;
+      color: var(--white);
+      font-size: 3rem;
+      z-index: 1;
+      font-family: 'Playfair Display', serif;
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 2rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+    }
+
+    .section h3 {
+      font-family: 'Playfair Display', serif;
+      color: var(--primary);
+      margin-bottom: 1.2rem;
+      font-size: 1.8rem;
+    }
+
+    .section p {
+      margin-bottom: 1rem;
+      color: #555;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .image-grid img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease;
+    }
+
+    .image-grid img:hover {
+      transform: scale(1.02);
+    }
+
+    footer {
+      text-align: center;
+      background: #e8f1f5;
+      padding: 1.5rem;
+      color: #666;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>EliteCare Clinic</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="#">Doctors</a>
+    <a href="#">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>About EliteCare</h2>
+</section>
+
+<main class="container">
+  <section class="section">
+    <h3>Who We Are</h3>
+    <p>EliteCare Clinic is a premier medical facility dedicated to providing expert, compassionate care across a wide range of medical specialties. Located in the heart of the city, our clinic is a hub of innovation, professionalism, and healing.</p>
+    <p>We believe healthcare should be personal, respectful, and easily accessible. Our mission is to deliver quality medical services in a safe and modern environment for all patients.</p>
+  </section>
+
+  <section class="section">
+    <h3>Our Values</h3>
+    <p><strong>Excellence:</strong> We strive for the highest standards in medical care and customer service.</p>
+    <p><strong>Compassion:</strong> We care deeply about our patients and their families.</p>
+    <p><strong>Integrity:</strong> We uphold honesty and transparency in all we do.</p>
+  </section>
+
+  <section class="section">
+    <h3>Meet Our Team</h3>
+    <div class="image-grid">
+      <img src="https://images.unsplash.com/photo-1588776814969-16ab372abf19?auto=format&fit=crop&w=600&q=80" alt="Doctor 1">
+      <img src="https://images.unsplash.com/photo-1606813905314-5b8f4d6d9f7f?auto=format&fit=crop&w=600&q=80" alt="Doctor 2">
+      <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=600&q=80" alt="Clinic Team">
+    </div>
+  </section>
+
+  <section class="section">
+    <h3>Our Facilities</h3>
+    <p>From clean and calming consultation rooms to high-tech diagnostic equipment, our clinic is built to make your visit smooth and stress-free.</p>
+    <div class="image-grid">
+      <img src="https://images.unsplash.com/photo-1576765607924-b9b7be06b3d7?auto=format&fit=crop&w=600&q=80" alt="Clinic Interior">
+      <img src="https://images.unsplash.com/photo-1603399812759-4e8cbfb81e04?auto=format&fit=crop&w=600&q=80" alt="Waiting Room">
+    </div>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 EliteCare Clinic. All rights reserved.
+</footer>
+
+</body>
+</html>
 
