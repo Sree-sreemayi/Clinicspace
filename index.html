@@ -1,499 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DocConnect | Book Your Doctor Appointment</title>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
-    rel="stylesheet"
-  />
-  <style>
-    /* Reset */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Base64 Background Example</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
 
-    body, html {
-      height: 100%;
-      font-family: 'Poppins', sans-serif;
-      line-height: 1.6;
-      color: #222;
-      overflow-x: hidden;
-      background: #67b26f;
-      position: relative;
-      min-height: 100vh;
-    }
+  html, body {
+    height: 100%;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
 
-    /* Animated Gradient Background */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: -2;
-      background: linear-gradient(270deg, #67b26f, #4ca2cd, #67b26f, #4ca2cd);
-      background-size: 800% 800%;
-      animation: gradientShift 20s ease infinite;
-    }
+  /* Full screen background with base64 image */
+  .background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/jpeg;base64,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');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.85) contrast(1.1);
+    z-index: -1;
+  }
 
-    @keyframes gradientShift {
-      0% {background-position: 0% 50%;}
-      50% {background-position: 100% 50%;}
-      100% {background-position: 0% 50%;}
-    }
+  /* Overlay gradient for better readability */
+  .overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
+    z-index: 0;
+  }
 
-    /* Floating bubbles overlay */
-    body::after {
-      content: "";
-      position: fixed;
-      top: -150px;
-      left: -150px;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle at center, rgba(255 255 255 / 0.15), transparent 70%);
-      filter: blur(80px);
-      animation: floatBubble 30s linear infinite;
-      z-index: -1;
-      border-radius: 50%;
-      opacity: 0.7;
-    }
-    @keyframes floatBubble {
-      0% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.7;
-      }
-      50% {
-        transform: translateY(30px) translateX(20px);
-        opacity: 0.4;
-      }
-      100% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.7;
-      }
-    }
+  /* Centered content */
+  .content {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-shadow: 0 0 15px rgba(0,0,0,0.7);
+    z-index: 1;
+  }
 
-    /* Another bubble */
-    .bubble2 {
-      position: fixed;
-      bottom: -120px;
-      right: -120px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle at center, rgba(255 255 255 / 0.2), transparent 60%);
-      filter: blur(60px);
-      border-radius: 50%;
-      animation: floatBubble2 25s ease-in-out infinite;
-      z-index: -1;
-      opacity: 0.6;
-    }
-    @keyframes floatBubble2 {
-      0%, 100% {
-        transform: translateY(0) translateX(0);
-        opacity: 0.6;
-      }
-      50% {
-        transform: translateY(-25px) translateX(-15px);
-        opacity: 0.35;
-      }
-    }
+  .content h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5em;
+  }
 
-    a {
-      color: #4ca2cd;
-      text-decoration: none;
-    }
-    a:hover,
-    a:focus {
-      text-decoration: underline;
-      outline: none;
-    }
+  .content p {
+    font-size: 1.5rem;
+    max-width: 600px;
+    line-height: 1.4;
+  }
 
-    /* Navbar */
-    nav {
-      background: rgba(255 255 255 / 0.85);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-radius: 0 0 15px 15px;
+  @media (max-width: 600px) {
+    .content h1 {
+      font-size: 2rem;
     }
-
-    nav .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #2a5d84;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.8rem;
-      font-weight: 600;
-    }
-    nav ul li a {
-      color: #2a5d84;
-      font-weight: 600;
+    .content p {
       font-size: 1rem;
-      transition: color 0.3s ease;
     }
-    nav ul li a:hover,
-    nav ul li a:focus {
-      color: #67b26f;
-      outline: none;
-    }
-
-    /* Main container */
-    main {
-      flex-grow: 1;
-      max-width: 1000px;
-      margin: 2rem auto 4rem;
-      padding: 0 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 5rem;
-      background: rgba(255 255 255 / 0.8);
-      border-radius: 25px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
-      backdrop-filter: saturate(180%) blur(30px);
-    }
-
-    /* Hero Section */
-    .hero {
-      display: flex;
-      align-items: center;
-      gap: 3rem;
-      flex-wrap: wrap;
-    }
-    .hero-text {
-      flex: 1 1 350px;
-    }
-    .hero-text h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      color: #2a5d84;
-      margin-bottom: 1rem;
-      text-shadow: 1px 1px 5px rgba(103,178,111,0.3);
-    }
-    .hero-text p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #3a4a5a;
-      font-weight: 500;
-    }
-    .hero-text button {
-      background: #67b26f;
-      color: white;
-      border: none;
-      padding: 0.9rem 2.5rem;
-      font-weight: 700;
-      font-size: 1.1rem;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 8px 20px rgba(103,178,111,0.6);
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    .hero-text button:hover,
-    .hero-text button:focus {
-      background: #4f9259;
-      outline: none;
-      transform: scale(1.05);
-    }
-
-    .hero-img {
-      flex: 1 1 350px;
-      text-align: center;
-    }
-    .hero-img img {
-      width: 100%;
-      max-width: 380px;
-      border-radius: 30px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-      filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
-      transition: transform 0.4s ease;
-    }
-    .hero-img img:hover {
-      transform: scale(1.05) rotate(1deg);
-    }
-
-    /* Form Styles */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 1.4rem;
-      max-width: 480px;
-      margin: 0 auto;
-    }
-    input, button {
-      font-family: 'Poppins', sans-serif;
-      font-size: 1rem;
-      padding: 0.9rem 1.3rem;
-      border-radius: 12px;
-      border: 1.5px solid #67b26f;
-      transition: border-color 0.3s ease;
-    }
-    input:focus {
-      border-color: #4ca2cd;
-      outline: none;
-      box-shadow: 0 0 10px #4ca2cdaa;
-    }
-    button {
-      background: #4ca2cd;
-      border: none;
-      color: white;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(76,162,205,0.6);
-      transition: background 0.3s ease, transform 0.3s ease;
-    }
-    button:hover,
-    button:focus {
-      background: #3a8bc8;
-      outline: none;
-      transform: scale(1.05);
-    }
-
-    /* Sections */
-    section {
-      padding: 3rem 2.5rem;
-      max-width: 700px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
-      color: #2a5d84;
-      margin-bottom: 1.2rem;
-      text-shadow: 1px 1px 3px rgba(103,178,111,0.3);
-    }
-    section p {
-      font-size: 1.15rem;
-      color: #4a5666;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    #about img {
-      margin-top: 1rem;
-      width: 180px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-
-    /* Contact Info */
-    .contact-info {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 2.5rem;
-      margin-top: 1rem;
-    }
-    .contact-info > div {
-      flex: 1 1 220px;
-      background: #eaf5f9;
-      border-radius: 15px;
-      padding: 1.3rem 1.8rem;
-      box-shadow: 0 6px 20px rgba(76,162,205,0.15);
-      color: #2a5d84;
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      transition: background 0.3s ease;
-    }
-    .contact-info > div:hover {
-      background: #c1dcf5;
-      cursor: default;
-    }
-
-    .contact-info svg {
-      width: 24px;
-      height: 24px;
-      fill: #4ca2cd;
-      flex-shrink: 0;
-    }
-    .contact-info a {
-      color: #2a5d84;
-      word-break: break-word;
-    }
-
-    /* Footer */
-    footer {
-      background: rgba(255 255 255 / 0.85);
-      text-align: center;
-      padding: 1.4rem 1rem;
-      color: #2a5d84;
-      font-weight: 600;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
-      border-radius: 15px 15px 0 0;
-      user-select: none;
-      font-size: 0.9rem;
-    }
-
-    /* Responsive */
-    @media (max-width: 850px) {
-      main {
-        padding: 2rem 1rem;
-      }
-      .hero {
-        flex-direction: column;
-      }
-      .hero-text, .hero-img {
-        flex: 1 1 100%;
-      }
-      .hero-text h1 {
-        font-size: 2.5rem;
-      }
-    }
-    @media (max-width: 450px) {
-      nav ul {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      nav {
-        padding: 1rem 1.2rem;
-      }
-      .contact-info {
-        flex-direction: column;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
-
-  <nav role="navigation" aria-label="Primary Navigation">
-    <div class="logo">DocConnect</div>
-    <ul>
-      <li><a href="#home" tabindex="1">Home</a></li>
-      <li><a href="#about" tabindex="2">About</a></li>
-      <li><a href="#contact" tabindex="3">Contact</a></li>
-    </ul>
-  </nav>
-
-  <main>
-    <section class="hero" id="home" aria-label="Book a Doctor Appointment">
-      <div class="hero-text">
-        <h1>Book Your Appointment with Ease</h1>
-        <p>Secure your consultation with Dr. Priya Sharma, a trusted general physician with 15+ years of experience. Get personalized care tailored just for you.</p>
-        <form id="appointmentForm" novalidate>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Full Name"
-            required
-            minlength="3"
-            aria-required="true"
-            autocomplete="name"
-          />
-          <input
-            type="date"
-            id="date"
-            name="date"
-            required
-            aria-required="true"
-            aria-label="Select appointment date"
-          />
-          <input type="hidden" id="latitude" name="latitude" />
-          <input type="hidden" id="longitude" name="longitude" />
-          <button type="submit" aria-label="Submit appointment booking form">Book Now</button>
-        </form>
-      </div>
-      <div class="hero-img" aria-hidden="true">
-        <img
-          src="https://images.unsplash.com/photo-1588776814546-76f2308a3a15?auto=format&fit=crop&w=600&q=80"
-          alt="Doctor with patient"
-          loading="lazy"
-        />
-      </div>
-    </section>
-
-    <section id="about" aria-label="About the doctor">
-      <h2>About Dr. Priya Sharma</h2>
-      <p>
-        Dr. Priya Sharma is a renowned general physician with over 15 years of experience
-        specializing in family medicine, preventive care, and chronic disease management.
-      </p>
-      <p>
-        Committed to compassionate and personalized healthcare, Dr. Sharma ensures
-        every patient receives thorough attention and evidence-based treatments.
-      </p>
-      <img
-        src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=400&q=80"
-        alt="Dr. Priya Sharma smiling"
-        loading="lazy"
-      />
-    </section>
-
-    <section id="contact" aria-label="Contact information">
-      <h2>Contact Us</h2>
-      <p>Have questions or need assistance? We're here to help.</p>
-      <div class="contact-info">
-        <div>
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.72 19.72 0 0 1-8.63-3.29 19.43 19.43 0 0 1-6-6 19.72 19.72 0 0 1-3.29-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 13.07 13.07 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 13.07 13.07 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          <a href="tel:+1234567890" tabindex="4" aria-label="Phone number">+1 (234) 567-890</a>
-        </div>
-        <div>
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
-          <address>123 Health St, Wellness City, Country</address>
-        </div>
-        <div>
-          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-2 9h-8v-2h8v2zm0-4h-8V7h8v2z"/></svg>
-          <a href="mailto:contact@docconnect.com" tabindex="5" aria-label="Email address">contact@docconnect.com</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    &copy; 2025 DocConnect. All rights reserved.
-  </footer>
-
-  <script>
-    // Min date for appointment date input
-    const dateInput = document.getElementById('date');
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.min = today;
-
-    // Try to get user location on load
-    window.onload = () => {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          pos => {
-            document.getElementById('latitude').value = pos.coords.latitude;
-            document.getElementById('longitude').value = pos.coords.longitude;
-          },
-          err => {
-            console.warn('Geolocation denied or unavailable.');
-          }
-        );
-      }
-    };
-
-    // Simple form submission
-    document.getElementById('appointmentForm').addEventListener('submit', e => {
-      e.preventDefault();
-      const name = e.target.name.value.trim();
-      const date = e.target.date.value;
-
-      if (name.length < 3) {
-        alert('Please enter a valid name (at least 3 characters).');
-        return;
-      }
-      if (!date) {
-        alert('Please select a date for your appointment.');
-        return;
-      }
-
-      alert(`Thank you, ${name}! Your appointment is booked for ${date}.`);
-      e.target.reset();
-    });
-  </script>
+  <div class="background"></div>
+  <div class="overlay"></div>
+  <div class="content">
+    <div>
+      <h1>Welcome!</h1>
+      <p>This page uses your exact base64-encoded JPEG image as a full-screen background with a subtle overlay for style and readability.</p>
+    </div>
+  </div>
 </body>
 </html>
+
