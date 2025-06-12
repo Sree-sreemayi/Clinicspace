@@ -1,45 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Book Your Doctor Appointment</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-  <script>
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition, showError);
-      } else {
-        alert("Geolocation is not supported.");
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doctor Appointment Booking</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset & base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, #00c6ff, #0072ff, #00b09b, #96c93d);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: white;
+      text-align: center;
+    }
+    @keyframes gradientBG {
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
+    }
+
+    .container {
+      background: rgba(255 255 255 / 0.15);
+      backdrop-filter: blur(12px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #fff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    }
+
+    p.lead {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      color: #e0f7f9;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+    }
+
+    form input, form button {
+      width: 100%;
+      padding: 15px 18px;
+      border-radius: 10px;
+      border: none;
+      margin-bottom: 20px;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: box-shadow 0.3s ease;
+    }
+
+    form input {
+      background: rgba(255 255 255 / 0.9);
+      color: #222;
+      box-shadow: inset 0 2px 5px rgb(0 0 0 / 0.1);
+    }
+    form input:focus {
+      outline: none;
+      box-shadow: 0 0 8px 3px #00fff7;
+      background: #fff;
+    }
+
+    form button {
+      background: #00f2fe;
+      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
+      color: #003b5c;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgb(0 255 255 / 0.6);
+      text-transform: uppercase;
+    }
+    form button:hover {
+      box-shadow: 0 6px 20px rgb(0 255 255 / 0.9);
+      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    }
+
+    .message {
+      font-size: 1.2rem;
+      background: rgba(255 255 255 / 0.25);
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(255 255 255 / 0.15);
+      color: #002d3a;
+      font-weight: 600;
+      user-select: none;
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+      form input, form button {
+        font-size: 0.95rem;
+        padding: 14px 16px;
       }
     }
-
-    function showPosition(position) {
-      document.getElementById("latitude").value = position.coords.latitude;
-      document.getElementById("longitude").value = position.coords.longitude;
-    }
-
-    function showError(error) {
-      alert("Error fetching location: " + error.message);
-    }
-
-    window.onload = getLocation;
-  </script>
+  </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="form-box">
-      <h1>🩺 Book an Appointment</h1>
-      <p class="subtitle">Let’s get you the care you deserve</p>
-      <form action="book.php" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="date" name="date" required>
-        <input type="hidden" name="latitude" id="latitude">
-        <input type="hidden" name="longitude" id="longitude">
-        <button type="submit">🚑 Book Now</button>
-      </form>
-    </div>
+
+  <div class="container" id="bookingContainer">
+    <h1>Book Doctor Appointment</h1>
+    <p class="lead">Get connected to a nearby doctor instantly.</p>
+    <form id="appointmentForm" novalidate>
+      <input type="text" id="name" name="name" placeholder="Full Name" required minlength="3" />
+      <input type="date" id="date" name="date" required />
+      <input type="hidden" id="latitude" name="latitude" />
+      <input type="hidden" id="longitude" name="longitude" />
+      <button type="submit">Book Now</button>
+    </form>
   </div>
+
+  <script>
+    const form = document.getElementById('appointmentForm');
+    const container = document.getElementById('bookingContainer');
+
+    // Set min date to today
+    const dateInput = document.getElementById('date');
+    const today = new Date().toISOString().split('T')[0];
+    dateInput.min = today;
+
+    // Get user's geolocation on page load
+    window.onload = () => {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            document.getElementById('latitude').value = pos.coords.latitude;
+            document.getElementById('longitude').value = pos.coords.longitude;
+          },
+          (err) => {
+            console.warn('Geolocation error:', err.message);
+          }
+        );
+      }
+    };
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+
+      // Simple form validation
+      const name = form.name.value.trim();
+      const date = form.date.value;
+      if (name.length < 3) {
+        alert('Please enter a valid name (at least 3 characters).');
+        return;
+      }
+      if (!date) {
+        alert('Please select a valid date.');
+        return;
+      }
+
+      // Get location values
+      const lat = form.latitude.value || 'Not Provided';
+      const long = form.longitude.value || 'Not Provided';
+
+      // Show confirmation message
+      container.innerHTML = `
+        <div class="message" role="alert">
+          <h2>✅ Appointment Confirmed!</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Date:</strong> ${date}</p>
+          <p><strong>Location:</strong> Latitude: ${lat}, Longitude: ${long}</p>
+          <p>Thank you for booking. We will connect you to a nearby doctor shortly.</p>
+          <button id="bookAgainBtn" style="margin-top:20px; padding:10px 20px; border:none; border-radius:10px; font-weight:700; cursor:pointer; background:#00bfa5; color:#fff;">Book Another</button>
+        </div>
+      `;
+
+      // Allow user to book again
+      document.getElementById('bookAgainBtn').addEventListener('click', () => {
+        location.reload();
+      });
+    });
+  </script>
+
 </body>
 </html>
-
