@@ -1,175 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Doctor Appointment - VPS Lakeshore Style</title>
-<style>
-  /* Reset */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXjaxYuZiR68LCrakQeIN2xtH9YOOS-xr3nA&s') no-repeat center center fixed;
-    background-size: cover;
-    min-height: 100vh;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px 20px;
-    position: relative;
-  }
-  /* Overlay for contrast */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-color: rgba(13, 71, 161, 0.85);
-    z-index: 0;
-  }
-  /* Container */
-  .container {
-    background: #fff;
-    max-width: 480px;
-    width: 100%;
-    padding: 35px 30px;
-    border-radius: 12px;
-    box-shadow: 0 0 25px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1;
-  }
-  h1 {
-    margin-bottom: 18px;
-    font-weight: 700;
-    font-size: 1.8rem;
-    color: #0d47a1;
-    text-align: center;
-  }
-  p.subtitle {
-    margin-bottom: 25px;
-    text-align: center;
-    color: #555;
-    font-size: 1rem;
-  }
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  label {
-    margin-bottom: 6px;
-    font-weight: 600;
-    color: #0d47a1;
-  }
-  input, select, textarea {
-    padding: 10px 14px;
-    margin-bottom: 20px;
-    border: 1.8px solid #90caf9;
-    border-radius: 7px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
-    font-family: inherit;
-  }
-  input:focus, select:focus, textarea:focus {
-    border-color: #0d47a1;
-    outline: none;
-    box-shadow: 0 0 8px #0d47a1aa;
-  }
-  button {
-    background-color: #0d47a1;
-    color: white;
-    font-weight: 700;
-    font-size: 1.15rem;
-    padding: 12px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.25s ease;
-  }
-  button:hover {
-    background-color: #1565c0;
-  }
-  /* Responsive */
-  @media (max-width: 500px) {
-    .container {
-      padding: 25px 20px;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doctor Appointment Booking</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
     }
-  }
-</style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f8;
+      color: #333;
+    }
+    header {
+      background-color: #0d47a1;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      color: #fff;
+    }
+    header img {
+      height: 40px;
+      margin-right: 1rem;
+    }
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    .hero {
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXjaxYuZiR68LCrakQeIN2xtH9YOOS-xr3nA&s') center center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      padding: 2rem;
+      border-radius: 8px;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .form-container {
+      flex: 1 1 400px;
+    }
+    form label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+      color: #0d47a1;
+    }
+    form input, form select, form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1.2rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: #333;
+    }
+    form button {
+      background-color: #0d47a1;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #1565c0;
+    }
+    .info-container {
+      flex: 1 1 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .info-container img {
+      width: 100%;
+      border-radius: 8px;
+      object-fit: cover;
+      max-height: 220px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+    }
+    .info-container h2 {
+      color: #0d47a1;
+      margin-bottom: 0.5rem;
+    }
+    .info-container p {
+      line-height: 1.4;
+      color: #555;
+    }
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+      }
+      .form-container, .info-container {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="container" role="main">
-    <h1>Book an Appointment</h1>
-    <p class="subtitle">Fill out the form below to schedule your visit</p>
-    <form id="appointmentForm" onsubmit="return submitForm(event)" novalidate>
-      <label for="fullName">Full Name <sup style="color:red;">*</sup></label>
-      <input type="text" id="fullName" name="fullName" placeholder="Your full name" required minlength="3" />
+<header>
+  <img src="https://img.icons8.com/ios-filled/50/ffffff/stethoscope.png" alt="Clinic Logo" />
+  <h1>HealthCare Clinic</h1>
+</header>
 
-      <label for="email">Email Address <sup style="color:red;">*</sup></label>
+<section class="hero" aria-label="Healthcare Hero Image">
+  Book Your Doctor Appointment Easily
+</section>
+
+<main>
+  <div class="form-container">
+    <h2>Appointment Form</h2>
+    <form>
+      <label for="name">Full Name *</label>
+      <input type="text" id="name" name="name" placeholder="John Doe" required />
+
+      <label for="email">Email Address *</label>
       <input type="email" id="email" name="email" placeholder="example@mail.com" required />
 
-      <label for="phone">Phone Number <sup style="color:red;">*</sup></label>
-      <input type="tel" id="phone" name="phone" placeholder="+123 456 7890" pattern="[+0-9\s]{7,15}" title="Enter a valid phone number" required />
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" name="phone" placeholder="+123 456 7890" required />
 
-      <label for="doctor">Select Doctor <sup style="color:red;">*</sup></label>
-      <select id="doctor" name="doctor" required>
-        <option value="" disabled selected>Choose a specialist</option>
+      <label for="specialist">Select Specialist *</label>
+      <select id="specialist" name="specialist" required>
+        <option value="" disabled selected>Select a specialist</option>
         <option value="general">General Physician</option>
-        <option value="cardiologist">Cardiologist</option>
-        <option value="dermatologist">Dermatologist</option>
-        <option value="pediatrician">Pediatrician</option>
-        <option value="orthopedic">Orthopedic</option>
+        <option value="cardiology">Cardiology</option>
+        <option value="dermatology">Dermatology</option>
+        <option value="pediatrics">Pediatrics</option>
+        <option value="neurology">Neurology</option>
       </select>
 
-      <label for="appointmentDate">Appointment Date <sup style="color:red;">*</sup></label>
-      <input type="date" id="appointmentDate" name="appointmentDate" required />
+      <label for="date">Appointment Date *</label>
+      <input type="date" id="date" name="date" required />
 
-      <label for="appointmentTime">Appointment Time <sup style="color:red;">*</sup></label>
-      <input type="time" id="appointmentTime" name="appointmentTime" required />
+      <label for="time">Appointment Time *</label>
+      <input type="time" id="time" name="time" required />
 
       <label for="notes">Additional Notes</label>
-      <textarea id="notes" name="notes" rows="3" placeholder="Any special instructions or info"></textarea>
+      <textarea id="notes" name="notes" rows="4" placeholder="Describe your symptoms or concerns..."></textarea>
 
-      <button type="submit" aria-label="Book appointment">Book Appointment</button>
+      <button type="submit">Book Appointment</button>
     </form>
   </div>
 
-  <script>
-    // Set min date for appointmentDate to today
-    const appointmentDate = document.getElementById('appointmentDate');
-    const today = new Date().toISOString().split('T')[0];
-    appointmentDate.setAttribute('min', today);
+  <div class="info-container" aria-label="Doctor images and information">
+    <h2>Our Specialists</h2>
+    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" alt="Doctor talking with patient" />
+    <p>Our experienced doctors are here to provide you with expert care in various specializations.</p>
 
-    // Form submission handler
-    function submitForm(event) {
-      event.preventDefault();
-      const form = event.target;
-
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return false;
-      }
-
-      const data = new FormData(form);
-
-      alert(`Appointment booked successfully!\n
-Name: ${data.get('fullName')}
-Email: ${data.get('email')}
-Phone: ${data.get('phone')}
-Doctor: ${data.get('doctor')}
-Date: ${data.get('appointmentDate')}
-Time: ${data.get('appointmentTime')}
-Notes: ${data.get('notes') || 'None'}`);
-
-      form.reset();
-      appointmentDate.setAttribute('min', today);
-      return false;
-    }
-  </script>
+    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" alt="Doctor reviewing patient files" />
+    <p>Schedule your appointment quickly and easily with our online system.</p>
+  </div>
+</main>
 
 </body>
 </html>
-
