@@ -3,125 +3,155 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Book Doctor Appointment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <title>Elegant Doctor Appointment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
+
     body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f9fbfc;
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f9fd;
       color: #333;
       line-height: 1.6;
     }
 
     header {
-      background-color: #0b5394;
+      background: #0f3057;
       color: #fff;
       padding: 1rem 2rem;
       display: flex;
       align-items: center;
-    }
-
-    header img {
-      height: 40px;
-      margin-right: 1rem;
+      justify-content: space-between;
     }
 
     header h1 {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    nav a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 500;
     }
 
     .hero {
       background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXjaxYuZiR68LCrakQeIN2xtH9YOOS-xr3nA&s') no-repeat center center/cover;
-      height: 300px;
+      height: 400px;
+      position: relative;
       display: flex;
-      align-items: center;
       justify-content: center;
-      color: #fff;
-      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-      font-size: 2rem;
-      font-weight: 600;
+      align-items: center;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.55);
+    }
+
+    .hero h2 {
+      position: relative;
+      color: white;
+      font-size: 2.5rem;
+      z-index: 2;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.6);
     }
 
     .container {
       max-width: 1200px;
-      margin: 2rem auto;
+      margin: 3rem auto;
       padding: 0 2rem;
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: 2rem;
     }
 
     .form-card, .info-card {
-      background-color: #fff;
+      background: white;
       padding: 2rem;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      flex: 1 1 500px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s ease;
     }
 
-    .form-card h2, .info-card h2 {
-      margin-bottom: 1rem;
-      color: #0b5394;
+    .form-card:hover, .info-card:hover {
+      transform: translateY(-5px);
     }
 
-    form label {
+    h3 {
+      margin-bottom: 1.5rem;
+      color: #0f3057;
+    }
+
+    label {
       display: block;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.5rem;
       font-weight: 600;
     }
 
-    form input, form select, form textarea {
+    input, select, textarea {
       width: 100%;
-      padding: 0.6rem;
-      margin-bottom: 1.2rem;
+      padding: 0.75rem;
+      margin-bottom: 1.5rem;
       border: 1px solid #ccc;
-      border-radius: 6px;
+      border-radius: 8px;
       font-size: 1rem;
+      transition: border 0.3s;
     }
 
-    form button {
-      background-color: #0b5394;
+    input:focus, select:focus, textarea:focus {
+      border-color: #0f3057;
+      outline: none;
+    }
+
+    button {
+      background: linear-gradient(to right, #0f3057, #00587a);
       color: white;
+      padding: 0.8rem 1.6rem;
       border: none;
-      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
       font-size: 1rem;
-      border-radius: 6px;
       cursor: pointer;
       transition: background 0.3s ease;
     }
 
-    form button:hover {
-      background-color: #084a80;
+    button:hover {
+      background: linear-gradient(to right, #00587a, #0f3057);
     }
 
     .info-card img {
       width: 100%;
       border-radius: 10px;
       margin-bottom: 1rem;
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     }
 
     .info-card p {
-      margin-bottom: 1.2rem;
       color: #555;
+      margin-bottom: 1rem;
     }
 
     footer {
       text-align: center;
+      background: #e8f1f5;
       padding: 1rem;
-      background-color: #eee;
-      color: #555;
+      color: #777;
       margin-top: 3rem;
     }
 
     @media (max-width: 768px) {
       .container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+      }
+      .hero h2 {
+        font-size: 2rem;
+        text-align: center;
       }
     }
   </style>
@@ -129,61 +159,61 @@
 <body>
 
 <header>
-  <img src="https://img.icons8.com/ios-filled/50/ffffff/stethoscope.png" alt="Clinic Logo" />
-  <h1>HealthCare Clinic</h1>
+  <h1>EliteCare Clinic</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Doctors</a>
+    <a href="#">Contact</a>
+  </nav>
 </header>
 
 <section class="hero">
-  Book a Doctor's Appointment Online
+  <h2>Your Health, Our Priority</h2>
 </section>
 
-<div class="container">
+<section class="container">
   <div class="form-card">
-    <h2>Appointment Form</h2>
+    <h3>Book an Appointment</h3>
     <form>
-      <label for="name">Full Name *</label>
-      <input type="text" id="name" name="name" required placeholder="Your full name">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" required>
 
-      <label for="email">Email *</label>
-      <input type="email" id="email" name="email" required placeholder="you@example.com">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
 
-      <label for="phone">Phone *</label>
-      <input type="tel" id="phone" name="phone" required placeholder="+1234567890">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required>
 
-      <label for="specialist">Specialist *</label>
+      <label for="specialist">Select Specialist</label>
       <select id="specialist" name="specialist" required>
-        <option value="">Select specialist</option>
+        <option value="">-- Choose --</option>
         <option value="general">General Physician</option>
-        <option value="dentist">Dentist</option>
+        <option value="pediatrician">Pediatrician</option>
         <option value="cardiology">Cardiologist</option>
-        <option value="dermatology">Dermatologist</option>
+        <option value="dermatologist">Dermatologist</option>
       </select>
 
-      <label for="date">Appointment Date *</label>
+      <label for="date">Appointment Date</label>
       <input type="date" id="date" name="date" required>
 
-      <label for="time">Appointment Time *</label>
-      <input type="time" id="time" name="time" required>
+      <label for="notes">Your Message</label>
+      <textarea id="notes" name="notes" rows="4" placeholder="Your symptoms or queries..."></textarea>
 
-      <label for="notes">Additional Notes</label>
-      <textarea id="notes" name="notes" rows="4" placeholder="Describe your symptoms or reason for visit..."></textarea>
-
-      <button type="submit">Book Appointment</button>
+      <button type="submit">Confirm Booking</button>
     </form>
   </div>
 
   <div class="info-card">
-    <h2>Why Choose Us?</h2>
-    <img src="https://images.unsplash.com/photo-1579154204601-01588f351e87?auto=format&fit=crop&w=800&q=80" alt="Doctor team">
-    <p>We provide expert care from certified professionals with years of experience in multiple specialties.</p>
-
-    <img src="https://images.unsplash.com/photo-1588776814546-ec7d3e6a8a51?auto=format&fit=crop&w=800&q=80" alt="Clinic room">
-    <p>Our clinics are equipped with modern facilities and a comfortable environment for your care and safety.</p>
+    <h3>About Our Clinic</h3>
+    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80" alt="Clinic">
+    <p>EliteCare Clinic provides expert health services using state-of-the-art medical technology and experienced staff across multiple specialties.</p>
+    <p>We’re committed to patient-centered care and offer personalized services in a calm, modern environment.</p>
   </div>
-</div>
+</section>
 
 <footer>
-  &copy; 2025 HealthCare Clinic. All rights reserved.
+  &copy; 2025 EliteCare Clinic. All rights reserved.
 </footer>
 
 </body>
