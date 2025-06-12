@@ -3,116 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Doctor Appointment Booking</title>
+  <title>Book Doctor Appointment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    /* Reset */
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f7f8;
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9fbfc;
       color: #333;
+      line-height: 1.6;
     }
+
     header {
-      background-color: #0d47a1;
+      background-color: #0b5394;
+      color: #fff;
       padding: 1rem 2rem;
       display: flex;
       align-items: center;
-      color: #fff;
     }
+
     header img {
       height: 40px;
       margin-right: 1rem;
     }
+
     header h1 {
-      font-size: 1.5rem;
-      margin: 0;
+      font-size: 1.6rem;
     }
+
     .hero {
-      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXjaxYuZiR68LCrakQeIN2xtH9YOOS-xr3nA&s') center center/cover no-repeat;
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXjaxYuZiR68LCrakQeIN2xtH9YOOS-xr3nA&s') no-repeat center center/cover;
       height: 300px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: white;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+      color: #fff;
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
       font-size: 2rem;
-      font-weight: bold;
+      font-weight: 600;
     }
-    main {
-      max-width: 900px;
+
+    .container {
+      max-width: 1200px;
       margin: 2rem auto;
-      background: white;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      padding: 2rem;
-      border-radius: 8px;
+      padding: 0 2rem;
       display: flex;
-      gap: 2rem;
       flex-wrap: wrap;
+      gap: 2rem;
     }
-    .form-container {
-      flex: 1 1 400px;
+
+    .form-card, .info-card {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      flex: 1 1 500px;
     }
+
+    .form-card h2, .info-card h2 {
+      margin-bottom: 1rem;
+      color: #0b5394;
+    }
+
     form label {
       display: block;
-      margin-bottom: 0.3rem;
-      font-weight: bold;
-      color: #0d47a1;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
     }
+
     form input, form select, form textarea {
       width: 100%;
-      padding: 0.5rem;
+      padding: 0.6rem;
       margin-bottom: 1.2rem;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 6px;
       font-size: 1rem;
-      font-family: inherit;
-      color: #333;
     }
+
     form button {
-      background-color: #0d47a1;
+      background-color: #0b5394;
+      color: white;
       border: none;
       padding: 0.75rem 1.5rem;
-      color: white;
-      font-weight: bold;
       font-size: 1rem;
-      border-radius: 4px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease;
     }
+
     form button:hover {
-      background-color: #1565c0;
+      background-color: #084a80;
     }
-    .info-container {
-      flex: 1 1 400px;
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      justify-content: center;
-    }
-    .info-container img {
+
+    .info-card img {
       width: 100%;
-      border-radius: 8px;
-      object-fit: cover;
-      max-height: 220px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
     }
-    .info-container h2 {
-      color: #0d47a1;
-      margin-bottom: 0.5rem;
-    }
-    .info-container p {
-      line-height: 1.4;
+
+    .info-card p {
+      margin-bottom: 1.2rem;
       color: #555;
     }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #eee;
+      color: #555;
+      margin-top: 3rem;
+    }
+
     @media (max-width: 768px) {
-      main {
+      .container {
         flex-direction: column;
-      }
-      .form-container, .info-container {
-        flex: 1 1 100%;
       }
     }
   </style>
@@ -124,55 +133,58 @@
   <h1>HealthCare Clinic</h1>
 </header>
 
-<section class="hero" aria-label="Healthcare Hero Image">
-  Book Your Doctor Appointment Easily
+<section class="hero">
+  Book a Doctor's Appointment Online
 </section>
 
-<main>
-  <div class="form-container">
+<div class="container">
+  <div class="form-card">
     <h2>Appointment Form</h2>
     <form>
       <label for="name">Full Name *</label>
-      <input type="text" id="name" name="name" placeholder="John Doe" required />
+      <input type="text" id="name" name="name" required placeholder="Your full name">
 
-      <label for="email">Email Address *</label>
-      <input type="email" id="email" name="email" placeholder="example@mail.com" required />
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" required placeholder="you@example.com">
 
-      <label for="phone">Phone Number *</label>
-      <input type="tel" id="phone" name="phone" placeholder="+123 456 7890" required />
+      <label for="phone">Phone *</label>
+      <input type="tel" id="phone" name="phone" required placeholder="+1234567890">
 
-      <label for="specialist">Select Specialist *</label>
+      <label for="specialist">Specialist *</label>
       <select id="specialist" name="specialist" required>
-        <option value="" disabled selected>Select a specialist</option>
+        <option value="">Select specialist</option>
         <option value="general">General Physician</option>
-        <option value="cardiology">Cardiology</option>
-        <option value="dermatology">Dermatology</option>
-        <option value="pediatrics">Pediatrics</option>
-        <option value="neurology">Neurology</option>
+        <option value="dentist">Dentist</option>
+        <option value="cardiology">Cardiologist</option>
+        <option value="dermatology">Dermatologist</option>
       </select>
 
       <label for="date">Appointment Date *</label>
-      <input type="date" id="date" name="date" required />
+      <input type="date" id="date" name="date" required>
 
       <label for="time">Appointment Time *</label>
-      <input type="time" id="time" name="time" required />
+      <input type="time" id="time" name="time" required>
 
       <label for="notes">Additional Notes</label>
-      <textarea id="notes" name="notes" rows="4" placeholder="Describe your symptoms or concerns..."></textarea>
+      <textarea id="notes" name="notes" rows="4" placeholder="Describe your symptoms or reason for visit..."></textarea>
 
       <button type="submit">Book Appointment</button>
     </form>
   </div>
 
-  <div class="info-container" aria-label="Doctor images and information">
-    <h2>Our Specialists</h2>
-    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80" alt="Doctor talking with patient" />
-    <p>Our experienced doctors are here to provide you with expert care in various specializations.</p>
+  <div class="info-card">
+    <h2>Why Choose Us?</h2>
+    <img src="https://images.unsplash.com/photo-1579154204601-01588f351e87?auto=format&fit=crop&w=800&q=80" alt="Doctor team">
+    <p>We provide expert care from certified professionals with years of experience in multiple specialties.</p>
 
-    <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80" alt="Doctor reviewing patient files" />
-    <p>Schedule your appointment quickly and easily with our online system.</p>
+    <img src="https://images.unsplash.com/photo-1588776814546-ec7d3e6a8a51?auto=format&fit=crop&w=800&q=80" alt="Clinic room">
+    <p>Our clinics are equipped with modern facilities and a comfortable environment for your care and safety.</p>
   </div>
-</main>
+</div>
+
+<footer>
+  &copy; 2025 HealthCare Clinic. All rights reserved.
+</footer>
 
 </body>
 </html>
