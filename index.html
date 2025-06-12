@@ -1,89 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Base64 Background Example</title>
-<style>
-  /* Reset */
-  * {
-    margin: 0; padding: 0; box-sizing: border-box;
-  }
-
-  html, body {
-    height: 100%;
-    width: 100%;
-    font-family: Arial, sans-serif;
-    overflow: hidden;
-  }
-
-  /* Full screen background with base64 image */
-  .background {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('data:image/jpeg;base64,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');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.85) contrast(1.1);
-    z-index: -1;
-  }
-
-  /* Overlay gradient for better readability */
-  .overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1));
-    z-index: 0;
-  }
-
-  /* Centered content */
-  .content {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    text-shadow: 0 0 15px rgba(0,0,0,0.7);
-    z-index: 1;
-  }
-
-  .content h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5em;
-  }
-
-  .content p {
-    font-size: 1.5rem;
-    max-width: 600px;
-    line-height: 1.4;
-  }
-
-  @media (max-width: 600px) {
-    .content h1 {
-      font-size: 2rem;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beautiful Background Example</title>
+  <style>
+    /* Set background image with nice overlay and cover */
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: 
+        linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+        url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXjaxYuZiR68LCrakQeIN2xtH9YOOS-xr3nA&s') no-repeat center center fixed;
+      background-size: cover;
     }
-    .content p {
-      font-size: 1rem;
+
+    .content {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 40px 60px;
+      border-radius: 15px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+      max-width: 600px;
     }
-  }
-</style>
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    }
+
+    p {
+      font-size: 1.25em;
+      line-height: 1.6;
+      text-shadow: 1px 1px 6px rgba(0,0,0,0.6);
+    }
+
+    @media (max-width: 700px) {
+      .content {
+        padding: 20px 30px;
+        max-width: 90%;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="background"></div>
-  <div class="overlay"></div>
   <div class="content">
-    <div>
-      <h1>Welcome!</h1>
-      <p>This page uses your exact base64-encoded JPEG image as a full-screen background with a subtle overlay for style and readability.</p>
-    </div>
+    <h1>Welcome to the Beautiful Background</h1>
+    <p>
+      This example uses your image as a full-screen background with a dark overlay
+      to make the text readable and visually appealing.
+    </p>
   </div>
 </body>
 </html>
+
 
