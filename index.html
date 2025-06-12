@@ -3,212 +3,285 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Doctor Appointment Booking</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+  <title>DocConnect | Book Your Doctor Appointment</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet"
+  />
   <style>
-    /* Reset & base */
+    /* Reset */
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    html {
-      scroll-behavior: smooth;
-    }
+
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(-45deg, #00c6ff, #0072ff, #00b09b, #96c93d);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #f0f4f8;
+      line-height: 1.6;
+      background: linear-gradient(135deg, #67b26f, #4ca2cd);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      color: #222;
     }
-    @keyframes gradientBG {
-      0% {background-position:0% 50%;}
-      50% {background-position:100% 50%;}
-      100% {background-position:0% 50%;}
+
+    a {
+      color: #4ca2cd;
+      text-decoration: none;
+    }
+    a:hover,
+    a:focus {
+      text-decoration: underline;
+      outline: none;
     }
 
     /* Navbar */
     nav {
-      position: fixed;
-      width: 100%;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      z-index: 999;
+      background: rgba(255 255 255 / 0.9);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
+
     nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
       font-weight: 700;
-      font-size: 1.5rem;
-      color: #00f2fe;
-      letter-spacing: 2px;
-      text-shadow: 0 2px 6px rgba(0,255,255,0.8);
-      cursor: default;
+      color: #2a5d84;
     }
+
     nav ul {
       list-style: none;
       display: flex;
-      gap: 2rem;
+      gap: 1.8rem;
+      font-weight: 600;
     }
     nav ul li a {
-      color: #d0e9f8;
+      color: #2a5d84;
       font-weight: 600;
-      text-decoration: none;
-      padding: 6px 8px;
-      border-radius: 6px;
-      transition: background-color 0.3s ease;
       font-size: 1rem;
-      user-select: none;
+      transition: color 0.3s ease;
     }
     nav ul li a:hover,
     nav ul li a:focus {
-      background-color: rgba(0, 255, 255, 0.3);
+      color: #67b26f;
       outline: none;
-      color: #00f2fe;
-      box-shadow: 0 0 10px #00f2fe;
     }
 
-    /* Container */
+    /* Main container */
     main {
-      padding-top: 80px; /* offset navbar */
       flex-grow: 1;
+      max-width: 1000px;
+      margin: 2rem auto 4rem;
+      padding: 0 1.5rem;
       display: flex;
       flex-direction: column;
+      gap: 5rem;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
       align-items: center;
-      gap: 80px;
-      max-width: 900px;
-      margin: 0 auto 60px;
-      padding-left: 20px;
-      padding-right: 20px;
-    }
-
-    /* Section styles */
-    section {
-      background: rgba(255 255 255 / 0.15);
-      backdrop-filter: blur(14px);
-      border-radius: 24px;
-      padding: 40px 30px;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-      width: 100%;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    section h2 {
-      font-size: 2.3rem;
-      margin-bottom: 15px;
-      color: #00f2fe;
-      text-shadow: 0 2px 10px rgba(0,255,255,0.8);
-      font-weight: 700;
-    }
-
-    section p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #d0e9f8;
-      margin-bottom: 20px;
-    }
-
-    /* Booking form */
-    form input, form button {
-      width: 100%;
-      padding: 15px 18px;
-      margin-bottom: 20px;
-      border-radius: 12px;
-      border: none;
-      font-size: 1rem;
-      font-weight: 500;
-      transition: box-shadow 0.3s ease;
-    }
-
-    form input {
-      background: rgba(255 255 255 / 0.95);
-      color: #222;
-      box-shadow: inset 0 2px 6px rgb(0 0 0 / 0.15);
-    }
-    form input:focus {
-      outline: none;
-      box-shadow: 0 0 10px 3px #00f2fe;
-      background: #fff;
-    }
-
-    form button {
-      background: linear-gradient(90deg, #00f2fe 0%, #4facfe 100%);
-      color: #003b5c;
-      cursor: pointer;
-      font-weight: 700;
-      box-shadow: 0 6px 20px rgba(0,255,255,0.6);
-      text-transform: uppercase;
-      letter-spacing: 1.1px;
-      user-select: none;
-    }
-    form button:hover, form button:focus {
-      box-shadow: 0 8px 30px rgba(0,255,255,0.9);
-      background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
-      outline: none;
-    }
-
-    /* Confirmation message */
-    .message {
-      font-size: 1.3rem;
-      background: rgba(255 255 255 / 0.25);
-      padding: 30px 20px;
+      gap: 3rem;
+      background: rgba(255 255 255 / 0.85);
       border-radius: 20px;
-      box-shadow: 0 6px 25px rgba(255 255 255 / 0.15);
-      color: #002d3a;
-      font-weight: 600;
-      user-select: none;
-      max-width: 600px;
-      margin: 0 auto;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+      padding: 3rem 2rem;
+      flex-wrap: wrap;
     }
-    .message h3 {
-      margin-bottom: 20px;
-      color: #00a4b8;
-      text-shadow: 0 2px 8px #00a4b8;
+    .hero-text {
+      flex: 1 1 350px;
     }
-
-    /* Button for booking again */
-    #bookAgainBtn {
-      margin-top: 20px;
-      padding: 14px 28px;
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: #2a5d84;
+      margin-bottom: 1rem;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+      color: #3a4a5a;
+      font-weight: 500;
+    }
+    .hero-text button {
+      background: #67b26f;
+      color: white;
       border: none;
-      border-radius: 14px;
-      background: #00bfa5;
-      color: #fff;
+      padding: 0.9rem 2.5rem;
       font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 50px;
       cursor: pointer;
+      box-shadow: 0 6px 15px rgba(103,178,111,0.5);
       transition: background 0.3s ease;
     }
-    #bookAgainBtn:hover, #bookAgainBtn:focus {
-      background: #009e88;
+    .hero-text button:hover,
+    .hero-text button:focus {
+      background: #4f9259;
       outline: none;
+    }
+
+    .hero-img {
+      flex: 1 1 350px;
+      text-align: center;
+    }
+    .hero-img img {
+      width: 100%;
+      max-width: 380px;
+      border-radius: 30px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Form Styles */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    input, button {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      padding: 0.9rem 1.3rem;
+      border-radius: 12px;
+      border: 1.5px solid #67b26f;
+      transition: border-color 0.3s ease;
+    }
+    input:focus {
+      border-color: #4ca2cd;
+      outline: none;
+      box-shadow: 0 0 10px #4ca2cdaa;
+    }
+    button {
+      background: #4ca2cd;
+      border: none;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(76,162,205,0.6);
+      transition: background 0.3s ease;
+    }
+    button:hover,
+    button:focus {
+      background: #3a8bc8;
+      outline: none;
+      transform: scale(1.05);
+    }
+
+    /* Sections */
+    section {
+      background: rgba(255 255 255 / 0.9);
+      padding: 3rem 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      color: #2a5d84;
+    }
+    section p {
+      font-size: 1.1rem;
+      color: #3a4a5a;
+      margin-bottom: 1.2rem;
+      font-weight: 500;
+      line-height: 1.5;
+    }
+    section p a {
+      color: #67b26f;
+      font-weight: 600;
+    }
+    section p a:hover,
+    section p a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    /* Contact icons & layout */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1.2rem;
+    }
+    .contact-info div {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-weight: 600;
+      color: #2a5d84;
+      font-size: 1.1rem;
+    }
+    .contact-info svg {
+      width: 24px;
+      height: 24px;
+      fill: #67b26f;
+      flex-shrink: 0;
+    }
+
+    /* Footer */
+    footer {
+      background: #2a5d84;
+      color: #cde3f0;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.9rem;
+      font-weight: 400;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
     }
 
     /* Responsive */
-    @media (max-width: 640px) {
+    @media (max-width: 860px) {
       main {
-        padding: 20px;
+        margin: 1.5rem 1rem 3rem;
       }
-      section {
-        padding: 30px 20px;
-        max-width: 100%;
+      .hero {
+        flex-direction: column;
       }
-      section h2 {
-        font-size: 1.9rem;
+      .hero-text, .hero-img {
+        flex: 1 1 auto;
+      }
+      .hero-text h1 {
+        font-size: 2.4rem;
       }
     }
-
+    @media (max-width: 460px) {
+      nav ul {
+        gap: 1rem;
+      }
+      nav .logo {
+        font-size: 1.4rem;
+      }
+      section h2 {
+        font-size: 1.8rem;
+      }
+      section p {
+        font-size: 1rem;
+      }
+      .contact-info div {
+        font-size: 1rem;
+      }
+    }
   </style>
 </head>
 <body>
-
-  <nav>
-    <div class="logo">DocConnect</div>
+  <nav role="navigation" aria-label="Primary Navigation">
+    <div class="logo" tabindex="0">DocConnect</div>
     <ul>
       <li><a href="#home" tabindex="1">Home</a></li>
       <li><a href="#about" tabindex="2">About</a></li>
@@ -217,65 +290,108 @@
   </nav>
 
   <main>
-    <!-- Home Section -->
-    <section id="home" aria-label="Book an appointment">
-      <h2>Book Doctor Appointment</h2>
-      <p>Fill the form below and get connected to a nearby doctor instantly.</p>
-      <form id="appointmentForm" novalidate>
-        <input type="text" id="name" name="name" placeholder="Full Name" required minlength="3" aria-required="true" />
-        <input type="date" id="date" name="date" required aria-required="true" />
-        <input type="hidden" id="latitude" name="latitude" />
-        <input type="hidden" id="longitude" name="longitude" />
-        <button type="submit" aria-label="Submit appointment booking form">Book Now</button>
-      </form>
+    <section class="hero" id="home" aria-label="Book an appointment">
+      <div class="hero-text">
+        <h1>Book Your Doctor Appointment</h1>
+        <p>Schedule your consultation with expert doctors easily and quickly. Quality care is just a few clicks away.</p>
+        <form id="appointmentForm" novalidate>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Full Name"
+            required
+            minlength="3"
+            aria-required="true"
+            autocomplete="name"
+          />
+          <input
+            type="date"
+            id="date"
+            name="date"
+            required
+            aria-required="true"
+            aria-label="Select appointment date"
+          />
+          <input type="hidden" id="latitude" name="latitude" />
+          <input type="hidden" id="longitude" name="longitude" />
+          <button type="submit" aria-label="Submit appointment booking form">Book Now</button>
+        </form>
+      </div>
+      <div class="hero-img" aria-hidden="true">
+        <img
+          src="https://images.unsplash.com/photo-1588776814546-76f2308a3a15?auto=format&fit=crop&w=600&q=80"
+          alt="Doctor with patient"
+          loading="lazy"
+        />
+      </div>
     </section>
 
-    <!-- About Section -->
     <section id="about" aria-label="About the doctor">
       <h2>About Dr. Priya Sharma</h2>
       <p>
-        Dr. Priya Sharma is a highly experienced general physician with over 15 years of practice. 
-        She specializes in family medicine, preventive care, and chronic disease management.
+        Dr. Priya Sharma is a renowned general physician with over 15 years of experience
+        specializing in family medicine, preventive care, and chronic disease management.
       </p>
       <p>
-        Committed to compassionate and personalized care, Dr. Sharma is dedicated to helping patients achieve optimal health and wellness.
+        Committed to compassionate and personalized healthcare, Dr. Sharma ensures
+        every patient receives thorough attention and evidence-based treatments.
       </p>
+      <img
+        src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=400&q=80"
+        alt="Dr. Priya Sharma smiling"
+        style="width: 150px; border-radius: 15px; margin-top: 1rem;"
+        loading="lazy"
+      />
     </section>
 
-    <!-- Contact Section -->
     <section id="contact" aria-label="Contact information">
       <h2>Contact Us</h2>
-      <p>Have questions or need assistance? Reach out to us!</p>
-      <p>Email: <a href="mailto:contact@docconnect.com" style="color:#00f2fe; text-decoration:none;">contact@docconnect.com</a></p>
-      <p>Phone: <a href="tel:+1234567890" style="color:#00f2fe; text-decoration:none;">+1 (234) 567-890</a></p>
-      <p>Address: 123 Health St, Wellness City, Country</p>
+      <p>Have questions or need assistance? We're here to help.</p>
+      <div class="contact-info">
+        <div>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.72 19.72 0 0 1-8.63-3.29 19.43 19.43 0 0 1-6-6 19.72 19.72 0 0 1-3.29-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 13.07 13.07 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 13.07 13.07 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+1234567890" tabindex="4" aria-label="Phone number">+1 (234) 567-890</a>
+        </div>
+        <div>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7zm0 9.5a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5z"/></svg>
+          <address>123 Health St, Wellness City, Country</address>
+        </div>
+        <div>
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm-2 9h-8v-2h8v2zm0-4h-8V7h8v2z"/></svg>
+          <a href="mailto:contact@docconnect.com" tabindex="5" aria-label="Email address">contact@docconnect.com</a>
+        </div>
+      </div>
     </section>
   </main>
 
-  <script>
-    const form = document.getElementById('appointmentForm');
-    const main = document.querySelector('main');
+  <footer>
+    &copy; 2025 DocConnect. All rights reserved.
+  </footer>
 
-    // Set min date to today
+  <script>
+    // Min date for appointment date input
     const dateInput = document.getElementById('date');
     const today = new Date().toISOString().split('T')[0];
     dateInput.min = today;
 
-    // Get user's geolocation on page load
+    // Try to get user location on load
     window.onload = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-          (pos) => {
+          pos => {
             document.getElementById('latitude').value = pos.coords.latitude;
             document.getElementById('longitude').value = pos.coords.longitude;
           },
-          (err) => {
+          err => {
             console.warn('Geolocation error:', err.message);
           }
         );
       }
     };
 
+    // Form submission
+    const form = document.getElementById('appointmentForm');
     form.addEventListener('submit', e => {
       e.preventDefault();
 
@@ -288,29 +404,22 @@
         return;
       }
       if (!date) {
-        alert('Please select a valid date.');
+        alert('Please select a valid appointment date.');
         form.date.focus();
         return;
       }
 
-      const lat = form.latitude.value || 'Not Provided';
-      const long = form.longitude.value || 'Not Provided';
-
-      main.innerHTML = `
-        <section class="message" role="alert">
-          <h3>✅ Appointment Confirmed!</h3>
-          <p><strong>Name:</strong> ${name}</p>
-          <p><strong>Date:</strong> ${date}</p>
-          <p><strong>Location:</strong> Latitude: ${lat}, Longitude: ${long}</p>
-          <p>Thank you for booking. We will connect you to a nearby doctor shortly.</p>
-          <button id="bookAgainBtn" aria-label="Book another appointment">Book Another</button>
-        </section>
+      // Show confirmation message
+      document.querySelector('.hero-text').innerHTML = `
+        <h1>Thank you, ${name}!</h1>
+        <p>Your appointment has been successfully booked for <strong>${date}</strong>.</p>
+        <button id="bookAgainBtn" aria-label="Book another appointment">Book Another</button>
       `;
 
-      document.getElementById('bookAgainBtn').addEventListener('click', () => {
-        location.reload();
-      });
+      const bookAgainBtn = document.getElementById('bookAgainBtn');
+      bookAgainBtn.addEventListener('click', () => window.location.reload());
     });
   </script>
 </body>
 </html>
+
