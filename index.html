@@ -16,14 +16,87 @@
       box-sizing: border-box;
     }
 
-    body {
+    body, html {
+      height: 100%;
       font-family: 'Poppins', sans-serif;
       line-height: 1.6;
-      background: linear-gradient(135deg, #67b26f, #4ca2cd);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
       color: #222;
+      overflow-x: hidden;
+      background: #67b26f;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* Animated Gradient Background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: -2;
+      background: linear-gradient(270deg, #67b26f, #4ca2cd, #67b26f, #4ca2cd);
+      background-size: 800% 800%;
+      animation: gradientShift 20s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    /* Floating bubbles overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      top: -150px;
+      left: -150px;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle at center, rgba(255 255 255 / 0.15), transparent 70%);
+      filter: blur(80px);
+      animation: floatBubble 30s linear infinite;
+      z-index: -1;
+      border-radius: 50%;
+      opacity: 0.7;
+    }
+    @keyframes floatBubble {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(30px) translateX(20px);
+        opacity: 0.4;
+      }
+      100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.7;
+      }
+    }
+
+    /* Another bubble */
+    .bubble2 {
+      position: fixed;
+      bottom: -120px;
+      right: -120px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle at center, rgba(255 255 255 / 0.2), transparent 60%);
+      filter: blur(60px);
+      border-radius: 50%;
+      animation: floatBubble2 25s ease-in-out infinite;
+      z-index: -1;
+      opacity: 0.6;
+    }
+    @keyframes floatBubble2 {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateY(-25px) translateX(-15px);
+        opacity: 0.35;
+      }
     }
 
     a {
@@ -38,7 +111,7 @@
 
     /* Navbar */
     nav {
-      background: rgba(255 255 255 / 0.9);
+      background: rgba(255 255 255 / 0.85);
       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       padding: 1rem 2rem;
       display: flex;
@@ -47,6 +120,7 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      border-radius: 0 0 15px 15px;
     }
 
     nav .logo {
@@ -83,6 +157,10 @@
       display: flex;
       flex-direction: column;
       gap: 5rem;
+      background: rgba(255 255 255 / 0.8);
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+      backdrop-filter: saturate(180%) blur(30px);
     }
 
     /* Hero Section */
@@ -90,10 +168,6 @@
       display: flex;
       align-items: center;
       gap: 3rem;
-      background: rgba(255 255 255 / 0.85);
-      border-radius: 20px;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-      padding: 3rem 2rem;
       flex-wrap: wrap;
     }
     .hero-text {
@@ -104,6 +178,7 @@
       font-size: 3rem;
       color: #2a5d84;
       margin-bottom: 1rem;
+      text-shadow: 1px 1px 5px rgba(103,178,111,0.3);
     }
     .hero-text p {
       font-size: 1.2rem;
@@ -120,13 +195,14 @@
       font-size: 1.1rem;
       border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgba(103,178,111,0.5);
-      transition: background 0.3s ease;
+      box-shadow: 0 8px 20px rgba(103,178,111,0.6);
+      transition: background 0.3s ease, transform 0.3s ease;
     }
     .hero-text button:hover,
     .hero-text button:focus {
       background: #4f9259;
       outline: none;
+      transform: scale(1.05);
     }
 
     .hero-img {
@@ -137,7 +213,12 @@
       width: 100%;
       max-width: 380px;
       border-radius: 30px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.15));
+      transition: transform 0.4s ease;
+    }
+    .hero-img img:hover {
+      transform: scale(1.05) rotate(1deg);
     }
 
     /* Form Styles */
@@ -167,8 +248,8 @@
       color: white;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 15px rgba(76,162,205,0.6);
-      transition: background 0.3s ease;
+      box-shadow: 0 8px 25px rgba(76,162,205,0.6);
+      transition: background 0.3s ease, transform 0.3s ease;
     }
     button:hover,
     button:focus {
@@ -179,109 +260,115 @@
 
     /* Sections */
     section {
-      background: rgba(255 255 255 / 0.9);
       padding: 3rem 2.5rem;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
       max-width: 700px;
       margin: 0 auto;
       text-align: center;
     }
     section h2 {
       font-family: 'Playfair Display', serif;
-      font-size: 2.4rem;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
       color: #2a5d84;
+      margin-bottom: 1.2rem;
+      text-shadow: 1px 1px 3px rgba(103,178,111,0.3);
     }
     section p {
-      font-size: 1.1rem;
-      color: #3a4a5a;
-      margin-bottom: 1.2rem;
-      font-weight: 500;
-      line-height: 1.5;
-    }
-    section p a {
-      color: #67b26f;
-      font-weight: 600;
-    }
-    section p a:hover,
-    section p a:focus {
-      text-decoration: underline;
-      outline: none;
+      font-size: 1.15rem;
+      color: #4a5666;
+      line-height: 1.6;
+      margin-bottom: 1rem;
     }
 
-    /* Contact icons & layout */
+    #about img {
+      margin-top: 1rem;
+      width: 180px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Contact Info */
     .contact-info {
       display: flex;
-      flex-direction: column;
-      gap: 1rem;
-      align-items: center;
       justify-content: center;
-      margin-top: 1.2rem;
+      flex-wrap: wrap;
+      gap: 2.5rem;
+      margin-top: 1rem;
     }
-    .contact-info div {
+    .contact-info > div {
+      flex: 1 1 220px;
+      background: #eaf5f9;
+      border-radius: 15px;
+      padding: 1.3rem 1.8rem;
+      box-shadow: 0 6px 20px rgba(76,162,205,0.15);
+      color: #2a5d84;
+      font-weight: 600;
       display: flex;
       align-items: center;
       gap: 1rem;
-      font-weight: 600;
-      color: #2a5d84;
-      font-size: 1.1rem;
+      transition: background 0.3s ease;
     }
+    .contact-info > div:hover {
+      background: #c1dcf5;
+      cursor: default;
+    }
+
     .contact-info svg {
       width: 24px;
       height: 24px;
-      fill: #67b26f;
+      fill: #4ca2cd;
       flex-shrink: 0;
+    }
+    .contact-info a {
+      color: #2a5d84;
+      word-break: break-word;
     }
 
     /* Footer */
     footer {
-      background: #2a5d84;
-      color: #cde3f0;
+      background: rgba(255 255 255 / 0.85);
       text-align: center;
-      padding: 1.5rem 1rem;
+      padding: 1.4rem 1rem;
+      color: #2a5d84;
+      font-weight: 600;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.1);
+      border-radius: 15px 15px 0 0;
+      user-select: none;
       font-size: 0.9rem;
-      font-weight: 400;
-      box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
     }
 
     /* Responsive */
-    @media (max-width: 860px) {
+    @media (max-width: 850px) {
       main {
-        margin: 1.5rem 1rem 3rem;
+        padding: 2rem 1rem;
       }
       .hero {
         flex-direction: column;
       }
       .hero-text, .hero-img {
-        flex: 1 1 auto;
+        flex: 1 1 100%;
       }
       .hero-text h1 {
-        font-size: 2.4rem;
+        font-size: 2.5rem;
       }
     }
-    @media (max-width: 460px) {
+    @media (max-width: 450px) {
       nav ul {
+        flex-direction: column;
         gap: 1rem;
       }
-      nav .logo {
-        font-size: 1.4rem;
+      nav {
+        padding: 1rem 1.2rem;
       }
-      section h2 {
-        font-size: 1.8rem;
-      }
-      section p {
-        font-size: 1rem;
-      }
-      .contact-info div {
-        font-size: 1rem;
+      .contact-info {
+        flex-direction: column;
       }
     }
   </style>
 </head>
 <body>
+
   <nav role="navigation" aria-label="Primary Navigation">
-    <div class="logo" tabindex="0">DocConnect</div>
+    <div class="logo">DocConnect</div>
     <ul>
       <li><a href="#home" tabindex="1">Home</a></li>
       <li><a href="#about" tabindex="2">About</a></li>
@@ -290,10 +377,10 @@
   </nav>
 
   <main>
-    <section class="hero" id="home" aria-label="Book an appointment">
+    <section class="hero" id="home" aria-label="Book a Doctor Appointment">
       <div class="hero-text">
-        <h1>Book Your Doctor Appointment</h1>
-        <p>Schedule your consultation with expert doctors easily and quickly. Quality care is just a few clicks away.</p>
+        <h1>Book Your Appointment with Ease</h1>
+        <p>Secure your consultation with Dr. Priya Sharma, a trusted general physician with 15+ years of experience. Get personalized care tailored just for you.</p>
         <form id="appointmentForm" novalidate>
           <input
             type="text"
@@ -340,7 +427,6 @@
       <img
         src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=400&q=80"
         alt="Dr. Priya Sharma smiling"
-        style="width: 150px; border-radius: 15px; margin-top: 1rem;"
         loading="lazy"
       />
     </section>
@@ -384,42 +470,30 @@
             document.getElementById('longitude').value = pos.coords.longitude;
           },
           err => {
-            console.warn('Geolocation error:', err.message);
+            console.warn('Geolocation denied or unavailable.');
           }
         );
       }
     };
 
-    // Form submission
-    const form = document.getElementById('appointmentForm');
-    form.addEventListener('submit', e => {
+    // Simple form submission
+    document.getElementById('appointmentForm').addEventListener('submit', e => {
       e.preventDefault();
-
-      const name = form.name.value.trim();
-      const date = form.date.value;
+      const name = e.target.name.value.trim();
+      const date = e.target.date.value;
 
       if (name.length < 3) {
         alert('Please enter a valid name (at least 3 characters).');
-        form.name.focus();
         return;
       }
       if (!date) {
-        alert('Please select a valid appointment date.');
-        form.date.focus();
+        alert('Please select a date for your appointment.');
         return;
       }
 
-      // Show confirmation message
-      document.querySelector('.hero-text').innerHTML = `
-        <h1>Thank you, ${name}!</h1>
-        <p>Your appointment has been successfully booked for <strong>${date}</strong>.</p>
-        <button id="bookAgainBtn" aria-label="Book another appointment">Book Another</button>
-      `;
-
-      const bookAgainBtn = document.getElementById('bookAgainBtn');
-      bookAgainBtn.addEventListener('click', () => window.location.reload());
+      alert(`Thank you, ${name}! Your appointment is booked for ${date}.`);
+      e.target.reset();
     });
   </script>
 </body>
 </html>
-
