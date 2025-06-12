@@ -1,1 +1,45 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor Appointment Booking</title>
+  <script>
+    // Get user location on page load
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function showPosition(position) {
+      document.getElementById("latitude").value = position.coords.latitude;
+      document.getElementById("longitude").value = position.coords.longitude;
+    }
+
+    function showError(error) {
+      alert("Error getting location: " + error.message);
+    }
+
+    window.onload = getLocation;
+  </script>
+</head>
+<body>
+  <h2>Book a Doctor Appointment</h2>
+  <form action="book.php" method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" required><br><br>
+
+    <label>Preferred Date:</label>
+    <input type="date" name="date" required><br><br>
+
+    <!-- Hidden location fields -->
+    <input type="hidden" name="latitude" id="latitude">
+    <input type="hidden" name="longitude" id="longitude">
+
+    <input type="submit" value="Book Appointment">
+  </form>
+</body>
+</html>
