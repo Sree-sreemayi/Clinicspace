@@ -3,9 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EliteCare Clinic - Book an Appointment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <title>EliteCare Clinic - Appointment</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #0f3057;
+      --secondary-color: #00587a;
+      --accent-color: #00bcd4;
+      --light-bg: #f4f9fd;
+      --white: #ffffff;
+      --shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      --transition: all 0.3s ease;
+    }
+
     * {
       margin: 0;
       padding: 0;
@@ -14,52 +24,47 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #f4f9fd;
+      background-color: var(--light-bg);
       color: #333;
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     header {
-      background: linear-gradient(135deg, #0f3057, #00587a);
-      color: #fff;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      color: var(--white);
       padding: 1.5rem 2rem;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      align-items: center;
+      box-shadow: var(--shadow);
     }
 
     header h1 {
-      font-size: 2rem;
-      font-weight: 600;
       font-family: 'Playfair Display', serif;
+      font-size: 2rem;
     }
 
     nav a {
-      color: #fff;
+      color: var(--white);
       margin-left: 1.5rem;
       text-decoration: none;
       font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: color 0.3s ease;
+      transition: var(--transition);
     }
 
     nav a:hover {
-      color: #f4f9fd;
+      color: var(--accent-color);
     }
 
     .hero {
-      background: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80') no-repeat center center/cover;
-      height: 500px;
-      position: relative;
+      background: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+      height: 450px;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      position: relative;
       text-align: center;
-      color: white;
-      padding: 2rem;
+      color: var(--white);
     }
 
     .hero::after {
@@ -72,9 +77,9 @@
     .hero h2 {
       position: relative;
       font-size: 3rem;
+      z-index: 1;
       font-family: 'Playfair Display', serif;
-      z-index: 2;
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
     .container {
@@ -82,28 +87,27 @@
       margin: 4rem auto;
       padding: 0 2rem;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
     }
 
     .form-card, .info-card {
-      background: white;
+      background: var(--white);
       padding: 2.5rem;
       border-radius: 12px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
     }
 
     .form-card:hover, .info-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+      transform: translateY(-6px);
     }
 
     h3 {
+      color: var(--primary-color);
+      font-size: 1.75rem;
       margin-bottom: 1.5rem;
-      color: #0f3057;
       font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
     }
 
     label {
@@ -114,8 +118,8 @@
 
     input, select, textarea {
       width: 100%;
-      padding: 0.85rem;
-      margin-bottom: 1.5rem;
+      padding: 0.8rem;
+      margin-bottom: 1.2rem;
       border: 1px solid #ccc;
       border-radius: 8px;
       font-size: 1rem;
@@ -123,34 +127,34 @@
     }
 
     input:focus, select:focus, textarea:focus {
-      border-color: #0f3057;
+      border-color: var(--primary-color);
       outline: none;
     }
 
     button {
-      background: linear-gradient(to right, #0f3057, #00587a);
-      color: white;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: var(--white);
       padding: 0.9rem 1.8rem;
       border: none;
       border-radius: 8px;
       font-size: 1.1rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: var(--transition);
     }
 
     button:hover {
-      background: linear-gradient(to right, #00587a, #0f3057);
+      background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
     }
 
     .info-card img {
       width: 100%;
       border-radius: 10px;
       margin-bottom: 1rem;
-      transition: transform 0.3s ease;
+      transition: var(--transition);
     }
 
     .info-card img:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
     }
 
     .info-card p {
@@ -162,18 +166,14 @@
       text-align: center;
       background: #e8f1f5;
       padding: 1.5rem;
-      color: #777;
+      color: #666;
+      font-size: 0.95rem;
       margin-top: 3rem;
-      font-size: 0.9rem;
     }
 
     @media (max-width: 768px) {
-      .container {
-        grid-template-columns: 1fr;
-      }
       .hero h2 {
-        font-size: 2.5rem;
-        text-align: center;
+        font-size: 2.2rem;
       }
     }
   </style>
@@ -228,9 +228,9 @@
 
   <div class="info-card">
     <h3>About Our Clinic</h3>
-    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80" alt="Clinic Interior">
-    <p>EliteCare Clinic provides expert health services using state-of-the-art medical technology and experienced staff across multiple specialties.</p>
-    <p>We’re committed to patient-centered care and offer personalized services in a calm, modern environment.</p>
+    <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=800&q=80" alt="Clinic interior">
+    <p>EliteCare Clinic provides expert medical services using the latest technology and compassionate care. We specialize in multiple fields to meet your health needs efficiently.</p>
+    <p>Experience professional, patient-first healthcare in a relaxing, private environment.</p>
   </div>
 </section>
 
