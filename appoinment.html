@@ -56,16 +56,20 @@
     }
     nav a:hover, nav a:focus {
       color: var(--accent);
+      outline: none;
+    }
+    nav a[aria-current="page"] {
+      font-weight: 700;
+      text-decoration: underline;
     }
     main {
       flex-grow: 1;
       max-width: 600px;
       margin: 4rem auto;
-      padding: 0 1.5rem;
+      padding: 3rem 2.5rem;
       background: var(--white);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 3rem 2.5rem;
     }
     h2 {
       font-family: 'Playfair Display', serif;
@@ -132,14 +136,14 @@
     <a href="index.html">Home</a>
     <a href="about.html">About</a>
     <a href="doctors.html">Doctors</a>
-    <a href="appointment.html" aria-current="page" style="font-weight: 700;">Book Appointment</a>
+    <a href="appointment.html" aria-current="page">Book Appointment</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
 
 <main>
   <h2>Book an Appointment</h2>
-  <form action="#" method="post" novalidate>
+  <form id="appointment-form" action="#" method="post" novalidate>
     <label for="name">Full Name <sup>*</sup></label>
     <input type="text" id="name" name="name" placeholder="Your full name" required />
 
@@ -159,7 +163,7 @@
     </select>
 
     <label for="date">Preferred Date <sup>*</sup></label>
-    <input type="date" id="date" name="date" required min="<?= new Date('Y-m-d') ?>" />
+    <input type="date" id="date" name="date" required />
 
     <label for="time">Preferred Time <sup>*</sup></label>
     <input type="time" id="time" name="time" required />
@@ -174,6 +178,28 @@
 <footer>
   &copy; 2025 EliteCare Clinic. All rights reserved.
 </footer>
+
+<script>
+  // Set minimum date for appointment to today
+  const dateInput = document.getElementById('date');
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.min = today;
+
+  // Form submission handler with alert and redirect
+  document.getElementById('appointment-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Basic HTML5 validation check
+    if (!this.checkValidity()) {
+      alert('Please fill out all required fields correctly.');
+      return;
+    }
+
+    alert('Appointment booked successfully!');
+    // Redirect to homepage (index.html)
+    window.location.href = 'index.html';
+  });
+</script>
 
 </body>
 </html>
