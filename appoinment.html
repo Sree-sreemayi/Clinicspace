@@ -117,6 +117,14 @@
       background-color: var(--secondary);
       outline: none;
     }
+    .success-message {
+      margin-top: 1rem;
+      padding: 1rem;
+      background-color: #d1f3e0;
+      color: #065f46;
+      border-radius: var(--radius);
+      display: none;
+    }
     footer {
       text-align: center;
       background: #e8f1f5;
@@ -169,9 +177,13 @@
       </select>
 
       <label for="date">Preferred Date *</label>
-      <input type="date" id="date" name="date" required min="" />
+      <input type="date" id="date" name="date" required />
 
       <button type="submit">Submit Appointment</button>
+
+      <div class="success-message" id="successMessage">
+        ✅ Thank you! Your appointment request has been submitted.
+      </div>
     </form>
   </main>
 
@@ -180,27 +192,33 @@
   </footer>
 
   <script>
-    // Set min date to today for date input
-    const dateInput = document.getElementById('date');
-    const today = new Date().toISOString().split('T')[0];
-    dateInput.setAttribute('min', today);
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set the minimum date to today
+      const dateInput = document.getElementById('date');
+      const today = new Date().toISOString().split('T')[0];
+      dateInput.setAttribute('min', today);
 
-    const form = document.getElementById('appointmentForm');
+      const form = document.getElementById('appointmentForm');
+      const successMessage = document.getElementById('successMessage');
 
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
 
-      // Simple form validation
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
-      }
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
 
-      alert('Thank you! Your appointment request has been submitted.');
-      form.reset();
+        // Show success message
+        successMessage.style.display = 'block';
+
+        // Optionally, clear form after short delay
+        setTimeout(() => {
+          form.reset();
+          successMessage.style.display = 'none';
+        }, 4000);
+      });
     });
   </script>
 </body>
 </html>
-
-    
